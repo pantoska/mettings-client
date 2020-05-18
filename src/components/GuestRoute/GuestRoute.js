@@ -29,6 +29,4 @@ const GuestRoute = ({ children, isAdmin, isOpen, ...rest }) => {
   );
 };
 
-GuestRoute.propTypes = {};
-
 export default enhance(GuestRoute);
