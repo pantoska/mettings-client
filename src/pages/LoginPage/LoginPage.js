@@ -3,6 +3,9 @@ import LoginForm from "./LoginForm";
 import Navbar from "../../components/Navbar";
 import { makeStyles } from "@material-ui/core";
 
+import Image from "../../utils/images/second-background.png";
+import PageLayout from "../../layout/PageLayout";
+
 const useStyles = makeStyles(
   (theme) => ({
     root: {
@@ -10,6 +13,8 @@ const useStyles = makeStyles(
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
+      backgroundImage: `url(${Image})`,
+      backgroundSize: "cover",
     },
     form: {
       margin: "40px",
@@ -24,12 +29,13 @@ const LoginPage = (props) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <Navbar />
-      <div className={classes.form}>
-        <LoginForm />
+    <PageLayout>
+      <div className={classes.root}>
+        <div className={classes.form}>
+          <LoginForm />
+        </div>
       </div>
-    </div>
+    </PageLayout>
   );
 };
 

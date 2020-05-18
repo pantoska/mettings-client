@@ -6,6 +6,8 @@ import {
   Button,
   Paper,
   Typography,
+  Grid,
+  Link,
 } from "@material-ui/core";
 import { connect } from "react-redux";
 import { login } from "../../../core/redux/login/loginActions";
@@ -13,14 +15,26 @@ import { login } from "../../../core/redux/login/loginActions";
 const useStyles = makeStyles(
   (theme) => ({
     root: {
-      minWidth: "400px",
-      maxWidth: "80%",
+      minWidth: "350px",
+      maxWidth: "70%",
       padding: theme.spacing(4, 3),
       display: "flex",
       flexDirection: "column",
+      backgroundColor: "rgba(255,255,255,0.6)",
     },
     submitButton: {
       marginTop: theme.spacing(2),
+      marginBottom: theme.spacing(2),
+      backgroundColor: "#AC3B61",
+      color: "#EEE2DC",
+      "&:hover": {
+        color: "#000000",
+        backgroundColor: "BAB2B5",
+      },
+    },
+    register: {
+      color: "#AC3B61",
+      fontSize: "13px",
     },
   }),
   {
@@ -63,7 +77,8 @@ const LoginForm = ({ login, isOpen }) => {
     <Paper component="form" className={classes.root} onSubmit={handleSubmit}>
       <Typography>Login Panel</Typography>
       <TextField
-        label="Login"
+        required
+        label="Email"
         value={credentials.login}
         name="login"
         onChange={handleChange}
@@ -71,6 +86,7 @@ const LoginForm = ({ login, isOpen }) => {
         margin="normal"
       />
       <TextField
+        required
         label="Password"
         type="password"
         value={credentials.password}
@@ -82,11 +98,17 @@ const LoginForm = ({ login, isOpen }) => {
       <Button
         type="submit"
         variant="contained"
-        color="primary"
         className={classes.submitButton}
       >
         Submit
       </Button>
+      <Grid container>
+        <Grid item>
+          <Link href="/register" variant="body2" className={classes.register}>
+            {"Don't have an account? Register"}
+          </Link>
+        </Grid>
+      </Grid>
     </Paper>
   );
 };

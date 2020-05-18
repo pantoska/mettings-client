@@ -13,9 +13,13 @@ import { logout } from "../../core/redux/login/loginActions";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
+    backgroundColor: "#AC3B61",
   },
   title: {
     flexGrow: 1,
+    color: "#EEE2DC",
+    letterSpacing: "3px",
+    textTransform: "uppercase",
   },
 }));
 
@@ -34,7 +38,7 @@ const Navbar = ({ logout, isOpen }) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.root}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             Events

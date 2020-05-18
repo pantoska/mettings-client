@@ -1,10 +1,35 @@
 import React from "react";
-import PropTypes from "prop-types";
+import PageLayout from "../../layout/PageLayout";
+import { makeStyles, Typography } from "@material-ui/core";
 
-const NotFoundPage = (props) => {
-  return <div>Not found page</div>;
-};
+const useStyles = makeStyles((theme) => ({
+  root: {
+    margin: theme.spacing(5),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    "& > *": {
+      marginTop: theme.spacing(2),
+      textAlign: "center",
+    },
+  },
+}));
 
-NotFoundPage.propTypes = {};
+function NotFoundPage() {
+  const classes = useStyles();
+
+  return (
+    <PageLayout>
+      <div className={classes.root}>
+        <Typography variant="h1" color="error">
+          404
+        </Typography>
+        <Typography variant="h5">Oops! Page not found</Typography>
+        <p>Sorry, but the page you are looking for is not found.</p>
+      </div>
+    </PageLayout>
+  );
+}
 
 export default NotFoundPage;
