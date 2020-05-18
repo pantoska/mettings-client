@@ -1,9 +1,9 @@
 import React from "react";
-import LoginForm from "./LoginForm";
 import { makeStyles } from "@material-ui/core";
 
 import Image from "../../utils/images/second-background.png";
 import PageLayout from "../../layout/PageLayout";
+import RegisterForm from "./RegisterForm";
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -20,22 +20,22 @@ const useStyles = makeStyles(
     },
   }),
   {
-    name: "LoginPage",
+    name: "RegisterPage",
   }
 );
 
-const LoginPage = (props) => {
+const RegisterPage = (props) => {
   const classes = useStyles();
 
   return (
     <PageLayout>
       <div className={classes.root}>
         <div className={classes.form}>
-          <LoginForm />
+          <RegisterForm />
         </div>
       </div>
     </PageLayout>
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
