@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 
-import { logout } from "../../core/redux/login/loginActions";
+import { logout } from "../../core/redux/auth/authActions";
 
 const useStyles = makeStyles((theme) => ({
   root: {

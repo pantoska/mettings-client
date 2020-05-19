@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Box } from "@material-ui/core";
-import { login } from "./core/redux/login/loginActions";
+import { login } from "./core/redux/auth/authActions";
 import AppRoutes from "./App.routes";
 
 const mapDispatchToProps = {
@@ -12,9 +12,9 @@ const mapDispatchToProps = {
 const enhance = connect(null, mapDispatchToProps);
 
 const App = ({ login }) => {
-  // useEffect(() => {
-  //   login();
-  // }, [login]);
+  useEffect(() => {
+    login();
+  }, [login]);
 
   return (
     <Router>

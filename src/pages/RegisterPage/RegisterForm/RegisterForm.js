@@ -10,7 +10,7 @@ import {
   Link,
 } from "@material-ui/core";
 import { connect } from "react-redux";
-import { login } from "../../../core/redux/login/loginActions";
+import { register } from "../../../core/redux/auth/authActions";
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -47,13 +47,13 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  login,
+  register,
 };
 
-const RegisterForm = ({ login, isOpen }) => {
+const RegisterForm = ({ register, isOpen }) => {
   const [credentials, setCredentials] = useState({
-    name: "",
-    surname: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -71,9 +71,9 @@ const RegisterForm = ({ login, isOpen }) => {
   const handleSubmit = useCallback(
     (event) => {
       event.preventDefault();
-      login(credentials);
+      register(credentials);
     },
-    [credentials, login]
+    [credentials, register]
   );
 
   return (
@@ -83,7 +83,7 @@ const RegisterForm = ({ login, isOpen }) => {
         required
         label="Name"
         value={credentials.name}
-        name="name"
+        name="firstName"
         onChange={handleChange}
         variant="outlined"
         margin="normal"
@@ -92,7 +92,7 @@ const RegisterForm = ({ login, isOpen }) => {
         required
         label="Surname"
         value={credentials.surname}
-        name="surname"
+        name="lastName"
         onChange={handleChange}
         variant="outlined"
         margin="normal"
@@ -121,7 +121,7 @@ const RegisterForm = ({ login, isOpen }) => {
         label="Confirm password"
         type="password"
         value={credentials.confirmPassword}
-        name="password"
+        name="confirmPassword"
         onChange={handleChange}
         variant="outlined"
         margin="normal"

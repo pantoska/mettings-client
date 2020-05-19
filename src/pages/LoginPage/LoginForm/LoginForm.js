@@ -10,7 +10,7 @@ import {
   Link,
 } from "@material-ui/core";
 import { connect } from "react-redux";
-import { login } from "../../../core/redux/login/loginActions";
+import { login } from "../../../core/redux/auth/authActions";
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -52,7 +52,7 @@ const mapDispatchToProps = {
 
 const LoginForm = ({ login, isOpen }) => {
   const [credentials, setCredentials] = useState({
-    login: "",
+    email: "",
     password: "",
   });
   const classes = useStyles();
@@ -79,8 +79,8 @@ const LoginForm = ({ login, isOpen }) => {
       <TextField
         required
         label="Email"
-        value={credentials.login}
-        name="login"
+        value={credentials.email}
+        name="email"
         onChange={handleChange}
         variant="outlined"
         margin="normal"
