@@ -3,18 +3,18 @@ import { Route, Redirect } from "react-router";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => ({
-  isAdmin: state.login.isAdmin,
+  isAuth: state.auth.isAuth,
   isOpen: state.login.open,
 });
 
 const enhance = connect(mapStateToProps);
 
-const GuestRoute = ({ children, isAdmin, isOpen, ...rest }) => {
+const GuestRoute = ({ children, isAuth, isOpen, ...rest }) => {
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        !isAdmin && !isOpen ? (
+        !isAuth || isOpen ? (
           children
         ) : (
           <Redirect

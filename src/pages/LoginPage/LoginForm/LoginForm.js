@@ -50,11 +50,12 @@ const mapDispatchToProps = {
   login,
 };
 
-const LoginForm = ({ login, isOpen }) => {
+const LoginForm = ({ login }) => {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
+
   const classes = useStyles();
 
   const handleChange = useCallback((event) => {

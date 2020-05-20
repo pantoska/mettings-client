@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuth,
   isOpen: state.login.open,
 });
 
@@ -33,7 +34,7 @@ const mapDispatchToProps = {
 
 const enhance = compose(connect(mapStateToProps, mapDispatchToProps));
 
-const Navbar = ({ logout, isOpen }) => {
+const Navbar = ({ logout, isAuth, isOpen }) => {
   const classes = useStyles();
 
   return (
@@ -43,7 +44,7 @@ const Navbar = ({ logout, isOpen }) => {
           <Typography variant="h6" className={classes.title}>
             Events
           </Typography>
-          {isOpen && (
+          {isAuth && (
             <Button
               color="inherit"
               onClick={() => {

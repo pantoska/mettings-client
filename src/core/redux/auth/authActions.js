@@ -6,12 +6,12 @@ const scope = "core/auth";
 export const login = createAsyncThunk(
   `${scope}/REQUEST_LOGIN`,
   async (requestDto) => {
-    const response = await AuthApi.authenticateUser(requestDto);
+    let response = await AuthApi.authenticateUser(requestDto);
     localStorage.setItem("expiryDate", response.data["expiryDate"]);
-    const role = response.data["authorities"];
 
     return {
-      isAdmin: role[0].authority === "ROLE_ADMIN",
+      open: response != null,
+      error: response.data,
     };
   }
 );
@@ -32,6 +32,6 @@ export const logout = createAction(`${scope}/REQUEST_LOGOUT`, async () => {
   localStorage.removeItem("isAdmin");
   localStorage.removeItem("expiryDate");
   return {
-    isAdmin: false,
+    open: false,
   };
 });

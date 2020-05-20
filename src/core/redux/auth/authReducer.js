@@ -2,17 +2,25 @@ import { createReducer } from "@reduxjs/toolkit";
 import { login, logout, register } from "./authActions";
 
 const initialState = {
-  isAdmin: false,
-  isRegister: "",
   open: false,
+  error: null,
+  isRegister: null,
 };
 
 const loginReducer = createReducer(initialState, {
   [login.fulfilled]: (state, action) => {
     return {
       ...state,
-      isAdmin: action.payload.isAdmin,
+      error: null,
       open: true,
+    };
+  },
+
+  [login.rejected]: (state, action) => {
+    return {
+      ...state,
+      error: action.payload.error,
+      open: false,
     };
   },
 
@@ -26,7 +34,6 @@ const loginReducer = createReducer(initialState, {
   [logout]: (state, action) => {
     return {
       ...state,
-      isAdmin: false,
       open: false,
     };
   },
