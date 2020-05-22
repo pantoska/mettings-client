@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import CheckAuthApi from "../../http/CheckAuthApi";
+import UserApi from "../../http/UserApi";
 
 const scope = "core/auth";
 
 export const checkAuth = createAsyncThunk(`${scope}/REQUEST_AUTH`, async () => {
-  const response = await CheckAuthApi.checkUser();
+  const response = await UserApi.checkUser();
 
   return {
     isAuth: response != null,
@@ -15,7 +15,7 @@ export const checkAuth = createAsyncThunk(`${scope}/REQUEST_AUTH`, async () => {
 export const checkUserInfo = createAsyncThunk(
   `${scope}/REQUEST_USER_INFO`,
   async () => {
-    const response = await CheckAuthApi.checkUserInfo();
+    const response = await UserApi.checkUserInfo();
 
     return {
       name: response.data["firstName"],

@@ -6,7 +6,7 @@ const scope = "core/auth";
 export const login = createAsyncThunk(
   `${scope}/REQUEST_LOGIN`,
   async (requestDto) => {
-    let response = await AuthApi.authenticateUser(requestDto);
+    let response = await AuthApi.loginUser(requestDto);
     localStorage.setItem("expiryDate", response.data["expiryDate"]);
 
     return {

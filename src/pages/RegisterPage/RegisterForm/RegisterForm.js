@@ -43,7 +43,7 @@ const useStyles = makeStyles(
 );
 
 const mapStateToProps = (state) => ({
-  isOpen: state.login.open,
+  isOpen: state.auth.open,
 });
 
 const mapDispatchToProps = {

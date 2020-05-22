@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Box } from "@material-ui/core";
-import { checkAuth } from "./core/redux/auth/checkAuthActions";
+import { checkAuth } from "./core/redux/auth/userActions";
 import AppRoutes from "./App.routes";
 
 const mapDispatchToProps = {

@@ -1,9 +1,10 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
-import Navbar from "../../components/Navbar";
+import PageLayout from "../../layout/PageLayout";
 
 import { compose } from "recompose";
 import { connect } from "react-redux";
+import EventsDashboard from "../../containers/EventsDashboard/EventsDashboard";
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -20,21 +21,20 @@ const useStyles = makeStyles(
 );
 
 const mapStateToProps = (state) => ({
-  isAdmin: state.login.isAdmin,
+  isAdmin: state.auth.isAdmin,
 });
 
 const enhance = compose(connect(mapStateToProps, null));
 
-const DashboardPage = ({ isAdmin }) => {
+const EventsPage = ({ isAdmin }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <Navbar />
-    </div>
+    <PageLayout>
+      <div className={classes.root}></div>
+      <EventsDashboard />
+    </PageLayout>
   );
 };
 
-DashboardPage.propTypes = {};
-
-export default enhance(DashboardPage);
+export default enhance(EventsPage);

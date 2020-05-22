@@ -5,7 +5,7 @@ export default {
     return request.post("http://localhost:8080/api/auth/register", requestDto);
   },
 
-  authenticateUser(requestDto) {
+  loginUser(requestDto) {
     return request.post("http://localhost:8080/api/auth/login", requestDto);
   },
 

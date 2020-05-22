@@ -16,13 +16,13 @@ const loginReducer = createReducer(initialState, {
     };
   },
 
-  [login.rejected]: (state, action) => {
-    return {
-      ...state,
-      error: action.payload.error,
-      open: false,
-    };
-  },
+  // [login.rejected]: (state, action) => {
+  //   return {
+  //     ...state,
+  //     error: action.payload.error,
+  //     open: false,
+  //   };
+  // },
 
   [register.fulfilled]: (state, action) => {
     return {

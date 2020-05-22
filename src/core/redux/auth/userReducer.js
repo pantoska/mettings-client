@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { checkAuth, checkUserInfo } from "./checkAuthActions";
+import { checkAuth, checkUserInfo } from "./userActions";
 
 const initialState = {
   isAuth: false,

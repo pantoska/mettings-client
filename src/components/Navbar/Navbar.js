@@ -24,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const mapStateToProps = (state) => ({
-  isAuth: state.auth.isAuth,
-  isOpen: state.login.open,
+  isAuth: state.user.isAuth,
+  isOpen: state.auth.open,
 });
 
 const mapDispatchToProps = {

@@ -3,8 +3,8 @@ import { Route, Redirect } from "react-router";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => ({
-  isAuth: state.auth.isAuth,
-  isOpen: state.login.open,
+  isAuth: state.user.isAuth,
+  isOpen: state.auth.open,
 });
 
 const enhance = connect(mapStateToProps);
