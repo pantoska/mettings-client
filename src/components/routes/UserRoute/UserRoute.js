@@ -14,7 +14,7 @@ const UserRoute = ({ children, isAuth, isOpen, ...rest }) => {
     <Route
       {...rest}
       render={({ location }) =>
-        isAuth || isOpen ? (
+        isAuth ? (
           children
         ) : (
           <Redirect

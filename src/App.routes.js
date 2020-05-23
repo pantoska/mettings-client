@@ -6,6 +6,7 @@ import UserRoute from "./components/routes/UserRoute";
 import LoginPage from "./pages/LoginPage";
 import EventsPage from "./pages/EventsPage/EventsPage";
 import RegisterPage from "./pages/RegisterPage";
+import EventFormPage from "./pages/EventFormPage";
 
 const Routes = () => (
   <Switch>
@@ -15,7 +16,10 @@ const Routes = () => (
     <GuestRoute exact path="/register">
       <RegisterPage />
     </GuestRoute>
-    <UserRoute path="/events">
+    <UserRoute exact path="/events/add">
+      <EventFormPage />
+    </UserRoute>
+    <UserRoute exactpath="/events">
       <EventsPage />
     </UserRoute>
     <Route>

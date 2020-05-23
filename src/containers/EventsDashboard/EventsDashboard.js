@@ -13,9 +13,11 @@ import EventCard from "../../components/EventCard";
 const useStyles = makeStyles(
   (theme) => ({
     root: {
-      // display: "flex",
-      // "align-items": "center",
-      // "flex-direction": "row",
+      width: "100%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      flexWrap: "wrap",
     },
   }),
   {
@@ -41,18 +43,16 @@ const EventsDashboard = ({ events, getEvents }) => {
   }, [getEvents]);
 
   return (
-    <div>
-      <div className={classes.root}>
-        <Container maxWidth="md">
-          <Grid container>
-            {events.map((el) => (
-              <Grid item key={el.id}>
-                <EventCard key={el.id} {...el} />
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </div>
+    <div className={classes.root}>
+      <Container maxWidth="md">
+        <Grid container>
+          {events.map((el) => (
+            <Grid item key={el.id}>
+              <EventCard key={el.id} {...el} />
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
     </div>
   );
 };

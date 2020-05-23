@@ -4,23 +4,28 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import useScrollTrigger from "@material-ui/core/useScrollTrigger";
+import Slide from "@material-ui/core/Slide";
 
 import { compose } from "recompose";
 import { connect } from "react-redux";
 
 import { logout } from "../../core/redux/auth/authActions";
+import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     backgroundColor: "#AC3B61",
   },
-  title: {
+  header: {
+    textDecoration: "none",
     flexGrow: 1,
     color: "#EEE2DC",
     letterSpacing: "3px",
     textTransform: "uppercase",
   },
+  title: {},
 }));
 
 const mapStateToProps = (state) => ({
@@ -34,7 +39,7 @@ const mapDispatchToProps = {
 
 const enhance = compose(connect(mapStateToProps, mapDispatchToProps));
 
-const Navbar = ({ logout, isAuth, isOpen }) => {
+const Navbar = ({ logout, isAuth }) => {
   const classes = useStyles();
 
   return (
@@ -42,17 +47,24 @@ const Navbar = ({ logout, isAuth, isOpen }) => {
       <AppBar position="static" className={classes.root}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Events
+            <NavLink to="/" className={classes.header}>
+              Events
+            </NavLink>
           </Typography>
           {isAuth && (
-            <Button
-              color="inherit"
-              onClick={() => {
-                logout();
-              }}
-            >
-              Logout
-            </Button>
+            <div>
+              <NavLink to="/events/add" exact={true} className={classes.header}>
+                Add event
+              </NavLink>
+              <Button
+                color="inherit"
+                onClick={() => {
+                  logout();
+                }}
+              >
+                Logout
+              </Button>
+            </div>
           )}
         </Toolbar>
       </AppBar>

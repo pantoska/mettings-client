@@ -24,7 +24,7 @@ const eventsReducer = createReducer(initialState, {
   [createEvent.fulfilled]: (state, action) => {
     return {
       ...state,
-      createdEvent: action.payload.event,
+      allEvents: [...state.allEvents, action.payload.event],
     };
   },
 });

@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     flexGrow: "1",
     display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
   },
   appFooter: {
     backgroundColor: "#544e51",
