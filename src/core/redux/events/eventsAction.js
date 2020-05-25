@@ -3,23 +3,22 @@ import EventsApi from "../../http/EventsApi";
 
 const scope = "core/events";
 
-export const getEvents = createAsyncThunk(
-  `${scope}/REQUEST_GET_ALL_EVENTS`,
-  async () => {
-    const response = await EventsApi.getAllEvents();
-    console.log(response.data);
-    return {
-      allEvents: response.data,
-    };
-  }
-);
-
 export const getEventById = createAsyncThunk(
   `${scope}/REQUEST_GET_EVENT`,
   async (id) => {
     const response = await EventsApi.getEvent(id);
     return {
       event: response.data,
+    };
+  }
+);
+
+export const getEvents = createAsyncThunk(
+  `${scope}/REQUEST_GET_ALL_EVENTS`,
+  async () => {
+    const response = await EventsApi.getAllEvents();
+    return {
+      allEvents: response.data,
     };
   }
 );
@@ -36,10 +35,11 @@ export const createEvent = createAsyncThunk(
 
 export const createComment = createAsyncThunk(
   `${scope}/REQUEST_CREATE_COMMENT`,
-  async (id, requestDto) => {
-    const response = await EventsApi.createComment(id, requestDto);
+  async (requestDto) => {
+    console.log(requestDto);
+    const response = await EventsApi.createComment(requestDto.id, requestDto);
     return {
-      event: response.data,
+      comments: response.data,
     };
   }
 );

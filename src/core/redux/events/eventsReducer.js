@@ -10,10 +10,20 @@ import {
 
 const initialState = {
   allEvents: [],
+  event: "",
   createdEvent: null,
+  comments: [],
 };
 
 const eventsReducer = createReducer(initialState, {
+  [getEventById.fulfilled]: (state, action) => {
+    return {
+      ...state,
+      event: action.payload.event,
+      allEvents: [...state.allEvents],
+    };
+  },
+
   [getEvents.fulfilled]: (state, action) => {
     return {
       ...state,
@@ -24,6 +34,14 @@ const eventsReducer = createReducer(initialState, {
   [createEvent.fulfilled]: (state, action) => {
     return {
       ...state,
+      allEvents: [...state.allEvents, action.payload.event],
+    };
+  },
+
+  [createComment.fulfilled]: (state, action) => {
+    return {
+      ...state,
+      comments: [...state.comments, action.payload.comments],
       allEvents: [...state.allEvents, action.payload.event],
     };
   },
