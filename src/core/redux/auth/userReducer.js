@@ -1,11 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { checkAuth, checkUserInfo } from "./userActions";
+import { checkAuth, checkUserInfo, getUserById } from "./userActions";
 
 const initialState = {
   isAuth: false,
   isAdmin: false,
-  name: null,
-  surname: null,
+  name: "",
+  surname: "",
 };
 
 const authReducer = createReducer(initialState, {
@@ -14,6 +14,14 @@ const authReducer = createReducer(initialState, {
       ...state,
       isAuth: action.payload.isAuth,
       isAdmin: action.payload.role === "ROLE_ADMIN",
+    };
+  },
+
+  [getUserById.fulfilled]: (state, action) => {
+    return {
+      ...state,
+      name: action.payload.name,
+      surname: action.payload.surname,
     };
   },
 

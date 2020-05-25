@@ -9,7 +9,13 @@ const mapStateToProps = (state) => ({
 
 const enhance = connect(mapStateToProps);
 
-const GuestRoute = ({ children, isAuth, isOpen, ...rest }) => {
+const GuestRoute = ({
+  component: Component,
+  children,
+  isAuth,
+  isOpen,
+  ...rest
+}) => {
   return (
     <Route
       {...rest}

@@ -4,19 +4,25 @@ import { connect } from "react-redux";
 
 const mapStateToProps = (state) => ({
   isAuth: state.user.isAuth,
-  isOpen: state.auth.open,
 });
 
 const enhance = connect(mapStateToProps);
 
-const UserRoute = ({ children, isAuth, isOpen, ...rest }) => {
+const UserRoute = ({
+  component: Component,
+  children,
+  location,
+  isAuth,
+  ...rest
+}) => {
   return (
     <Route
       {...rest}
-      render={({ location }) =>
+      render={({ props }) =>
         isAuth ? (
-          children
+          <Component {...rest} {...props} />
         ) : (
+          // children
           <Redirect
             to={{
               pathname: "/",

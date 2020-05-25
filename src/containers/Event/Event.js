@@ -3,17 +3,16 @@ import { makeStyles } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 import { compose } from "recompose";
 import { connect } from "react-redux";
 import { getEventById } from "../../core/redux/events/eventsAction";
+
 import CommentForm from "../Comment/CommentForm";
+import Comment from "../Comment/Comment";
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -38,7 +37,6 @@ const useStyles = makeStyles(
 );
 
 const mapStateToProps = (state) => ({
-  events: state.events.allEvents,
   event: state.events.event,
 });
 
@@ -61,12 +59,16 @@ const setImage = (image) => {
   }
 };
 
-const Event = ({ event, events, getEventById, ...props }) => {
+const Event = ({ event, getEventById, ...props }) => {
   const classes = useStyles();
 
   useEffect(() => {
     getEventById(props.match.params.id);
   }, [getEventById, props.match.params.id]);
+
+  if (!event) {
+    return null;
+  }
 
   return (
     <div>
@@ -95,6 +97,14 @@ const Event = ({ event, events, getEventById, ...props }) => {
         </CardContent>
       </Card>
       <CommentForm id={props.match.params.id} />
+      {event.commentList.map((el) => (
+        <Comment
+          key={el.id.timestamp}
+          userId={el.userId}
+          content={el.content}
+          date={el.date}
+        />
+      ))}
     </div>
   );
 };

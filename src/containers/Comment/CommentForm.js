@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 
 import {
   TextField,
@@ -16,6 +16,7 @@ const useStyles = makeStyles(
   (theme) => ({
     root: {
       minWidth: "350px",
+      margin: "30px",
       padding: theme.spacing(3, 3),
       display: "flex",
       flexDirection: "column",
@@ -84,7 +85,7 @@ const CommentForm = ({ event, createComment, ...props }) => {
       <TextField
         required
         multiline
-        rows={4}
+        rows={3}
         label="Your comment"
         value={comment.content}
         name="content"

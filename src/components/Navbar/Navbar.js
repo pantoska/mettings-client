@@ -4,8 +4,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import Slide from "@material-ui/core/Slide";
 
 import { compose } from "recompose";
 import { connect } from "react-redux";
@@ -24,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#EEE2DC",
     letterSpacing: "3px",
     textTransform: "uppercase",
+    margin: "10px",
   },
   title: {},
 }));
@@ -53,6 +52,9 @@ const Navbar = ({ logout, isAuth }) => {
           </Typography>
           {isAuth && (
             <div>
+              <NavLink to="/events/map" exact={true} className={classes.header}>
+                Show map
+              </NavLink>
               <NavLink to="/events/add" exact={true} className={classes.header}>
                 Add event
               </NavLink>

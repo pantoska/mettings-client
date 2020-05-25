@@ -10,7 +10,9 @@ import {
 
 const initialState = {
   allEvents: [],
-  event: "",
+  event: {
+    commentList: [],
+  },
   createdEvent: null,
   comments: [],
 };

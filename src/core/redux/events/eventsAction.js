@@ -36,7 +36,6 @@ export const createEvent = createAsyncThunk(
 export const createComment = createAsyncThunk(
   `${scope}/REQUEST_CREATE_COMMENT`,
   async (requestDto) => {
-    console.log(requestDto);
     const response = await EventsApi.createComment(requestDto.id, requestDto);
     return {
       comments: response.data,
