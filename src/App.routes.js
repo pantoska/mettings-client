@@ -8,6 +8,7 @@ import EventsPage from "./pages/EventsPage/EventsPage";
 import RegisterPage from "./pages/RegisterPage";
 import EventFormPage from "./pages/EventFormPage";
 import EventPage from "./pages/EventPage";
+import MapPage from "./pages/MapPage";
 
 const Routes = () => (
   <Switch>
@@ -27,6 +28,7 @@ const Routes = () => (
     <UserRoute exact path="/events" component={EventsPage} />
     {/* <EventsPage />
     </UserRoute> */}
+    <UserRoute exact path="/events/map" component={MapPage} />
     <UserRoute exact path="/events/:id" component={EventPage} />
     {/* <EventPage />
     </UserRoute> */}

@@ -2,9 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import configureStore from "./core/redux/configureStore";
-import "./index.css";
-import App from "./App";
+import "leaflet/dist/leaflet.css";
+
 import * as serviceWorker from "./serviceWorker";
+import App from "./App";
+import "./index.css";
 
 ReactDOM.render(
   <React.StrictMode>
