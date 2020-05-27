@@ -9,6 +9,7 @@ import RegisterPage from "./pages/RegisterPage";
 import EventFormPage from "./pages/EventFormPage";
 import EventPage from "./pages/EventPage";
 import MapPage from "./pages/MapPage";
+import AdminPage from "./pages/AdminPage";
 
 const Routes = () => (
   <Switch>
@@ -17,6 +18,7 @@ const Routes = () => (
     </GuestRoute>
     {/* <UserRoute exact path="/" component={EventsPage} /> */}
     <GuestRoute exact path="/login" component={LoginPage} />
+    <UserRoute exact path="/admin" component={AdminPage} />
     {/* <LoginPage />
     </GuestRoute> */}
     <GuestRoute exact path="/register" component={RegisterPage} />

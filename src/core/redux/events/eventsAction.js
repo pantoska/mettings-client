@@ -58,6 +58,7 @@ export const deleteEvent = createAsyncThunk(
   async (id) => {
     const response = await EventsApi.deleteEvent(id);
     return {
+      eventId: id,
       info: response.data,
     };
   }

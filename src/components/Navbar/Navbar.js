@@ -52,6 +52,9 @@ const Navbar = ({ logout, isAuth }) => {
           </Typography>
           {isAuth && (
             <div>
+              <NavLink to="/admin" exact={true} className={classes.header}>
+                Admin panel
+              </NavLink>
               <NavLink to="/events/map" exact={true} className={classes.header}>
                 Show map
               </NavLink>

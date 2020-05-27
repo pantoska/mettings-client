@@ -4,7 +4,7 @@ import {
   getEventById,
   createEvent,
   createComment,
-  updateEvent,
+  // updateEvent,
   deleteEvent,
 } from "./eventsAction";
 
@@ -37,6 +37,16 @@ const eventsReducer = createReducer(initialState, {
     return {
       ...state,
       allEvents: [...state.allEvents, action.payload.event],
+    };
+  },
+
+  [deleteEvent.fulfilled]: (state, action) => {
+    return {
+      ...state,
+      allEvents: state.allEvents.filter(
+        (event) => event.id !== action.payload.eventId
+      ),
+      // allEvents: [...state.allEvents, action.payload.event],
     };
   },
 

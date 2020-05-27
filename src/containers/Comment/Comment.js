@@ -1,15 +1,10 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect } from "react";
 
 import { makeStyles, Card, Typography } from "@material-ui/core";
 import { getUserById } from "../../core/redux/auth/userActions";
 
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import CardActionArea from "@material-ui/core/CardActionArea";
-
 import { compose } from "recompose";
 import { connect } from "react-redux";
-import { createComment } from "../../core/redux/events/eventsAction";
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -55,8 +50,6 @@ const enhance = compose(connect(mapStateToProps, mapDispatchToProps));
 
 const Comment = ({ getUserById, ...props }) => {
   const classes = useStyles();
-
-  console.log(props);
 
   useEffect(() => {
     getUserById(props.userId);

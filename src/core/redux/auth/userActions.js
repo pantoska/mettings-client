@@ -12,6 +12,27 @@ export const checkAuth = createAsyncThunk(`${scope}/REQUEST_AUTH`, async () => {
   };
 });
 
+export const getAllUsers = createAsyncThunk(
+  `${scope}/REQUEST_GET_USERS`,
+  async () => {
+    const response = await UserApi.getAllUsers();
+    console.log(response);
+    return {
+      users: response.data,
+    };
+  }
+);
+
+export const deleteUser = createAsyncThunk(
+  `${scope}/REQUEST_DELETE_USER`,
+  async (id) => {
+    await UserApi.deleteUser(id);
+    return {
+      userId: id,
+    };
+  }
+);
+
 export const getUserById = createAsyncThunk(
   `${scope}/REQUEST_GET_USER`,
   async (id) => {
