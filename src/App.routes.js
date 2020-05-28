@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import GuestRoute from "./components/routes/GuestRoute";
 import NotFoundPage from "./pages/NotFoundPage";
 import UserRoute from "./components/routes/UserRoute";
+import AdminRoute from "./components/routes/AdminRoute";
 import LoginPage from "./pages/LoginPage";
 import EventsPage from "./pages/EventsPage/EventsPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -18,7 +19,7 @@ const Routes = () => (
     </GuestRoute>
     {/* <UserRoute exact path="/" component={EventsPage} /> */}
     <GuestRoute exact path="/login" component={LoginPage} />
-    <UserRoute exact path="/admin" component={AdminPage} />
+    <AdminRoute exact path="/admin" component={AdminPage} />
     {/* <LoginPage />
     </GuestRoute> */}
     <GuestRoute exact path="/register" component={RegisterPage} />

@@ -4,6 +4,7 @@ import {
   getEventById,
   createEvent,
   createComment,
+  getEventByType,
   // updateEvent,
   deleteEvent,
 } from "./eventsAction";
@@ -23,6 +24,15 @@ const eventsReducer = createReducer(initialState, {
       ...state,
       event: action.payload.event,
       allEvents: [...state.allEvents],
+    };
+  },
+
+  [getEventByType]: (state, action) => {
+    return {
+      ...state,
+      allEvents: state.allEvents.filter((event) =>
+        event.type.includes(action.payload.eventType)
+      ),
     };
   },
 

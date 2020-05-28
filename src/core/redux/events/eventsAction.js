@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import EventsApi from "../../http/EventsApi";
 
 const scope = "core/events";
@@ -9,6 +9,17 @@ export const getEventById = createAsyncThunk(
     const response = await EventsApi.getEvent(id);
     return {
       event: response.data,
+    };
+  }
+);
+
+export const getEventByType = createAction(
+  `${scope}/REQUEST_GET_EVENT_BY_TITLE`,
+  (type) => {
+    return {
+      payload: {
+        eventType: type,
+      },
     };
   }
 );

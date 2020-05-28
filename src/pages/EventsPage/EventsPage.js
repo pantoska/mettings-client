@@ -5,6 +5,7 @@ import PageLayout from "../../layout/PageLayout";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 import EventsDashboard from "../../containers/EventsDashboard/EventsDashboard";
+import Searcher from "./Searcher";
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -31,8 +32,10 @@ const EventsPage = ({ isAdmin }) => {
 
   return (
     <PageLayout>
-      <div className={classes.root}></div>
-      <EventsDashboard />
+      <div className={classes.root}>
+        <Searcher />
+        <EventsDashboard />
+      </div>
     </PageLayout>
   );
 };

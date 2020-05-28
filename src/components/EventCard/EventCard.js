@@ -6,7 +6,6 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Typography from "@material-ui/core/Typography";
-import ButtonBase from "@material-ui/core/ButtonBase";
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -42,29 +41,23 @@ const EventCard = (props) => {
   return (
     <div className="OfferCardWrapper">
       <Card className={classes.root}>
-        <CardActionArea>
+        <CardActionArea onClick={routeChange}>
           <CardMedia
             className={classes.media}
             image={setImage(props.image)}
             title={props.image}
           />
-          <ButtonBase onClick={routeChange}>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {props.title}
-              </Typography>
-              <Typography
-                variant="subtitle1"
-                color="textSecondary"
-                component="p"
-              >
-                Place: {props.place}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                {props.description}
-              </Typography>
-            </CardContent>
-          </ButtonBase>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {props.title}
+            </Typography>
+            <Typography variant="subtitle1" color="textSecondary" component="p">
+              Place: {props.place}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {props.description}
+            </Typography>
+          </CardContent>
         </CardActionArea>
       </Card>
     </div>
