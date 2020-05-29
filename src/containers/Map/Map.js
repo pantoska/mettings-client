@@ -51,6 +51,7 @@ const Map = ({ getMarkers, allMarkers }) => {
     getMarkers();
   }, [getMarkers]);
 
+  allMarkers.map((el) => console.log(el));
   return (
     <div className={classes.root}>
       <LeafletMap center={[50.05, 19.95]} zoom={13}>
@@ -59,7 +60,7 @@ const Map = ({ getMarkers, allMarkers }) => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
         {allMarkers.map((el) => (
-          <Marker key={el.id} position={[el.latitude, el.longitude]}>
+          <Marker key={el.id} position={[el.longitude, el.latitude]}>
             <Popup>{el.description}</Popup>
           </Marker>
         ))}

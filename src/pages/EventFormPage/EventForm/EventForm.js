@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import { connect } from "react-redux";
 import { createEvent } from "../../../core/redux/events/eventsAction";
+import { createMarker } from "../../../core/redux/map/markerAction";
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -43,35 +44,67 @@ const useStyles = makeStyles(
 
 const mapDispatchToProps = {
   createEvent,
+  createMarker,
 };
 
-const EventForm = ({ createEvent }) => {
+const EventForm = ({ createEvent, createMarker }) => {
   const [metting, setMetting] = useState({
-    description: "",
-    place: "",
-    title: "",
-    type: "",
-    image: "",
+    form: {
+      description: "",
+      place: "",
+      title: "",
+      type: "",
+      image: "",
+    },
+    map: {
+      coordinates: "",
+    },
   });
   const classes = useStyles();
 
-  const handleChange = useCallback((event) => {
+  const handleChangeForm = useCallback((event) => {
     const { name, value } = event.target;
     setMetting((prev) => ({
       ...prev,
-      [name]: value,
+      form: {
+        ...prev.form,
+        [name]: value,
+      },
     }));
   }, []);
+
+  const handleChangeMap = useCallback(
+    (event) => {
+      const { value } = event.target;
+      const coordinates = value.split(" ");
+      setMetting((prev) => ({
+        ...prev,
+        map: {
+          longitude: coordinates[0],
+          latitude: coordinates[1],
+          description:
+            "Title: " +
+            metting.form.title +
+            " Place: " +
+            metting.form.place +
+            " Type: " +
+            metting.form.type,
+        },
+      }));
+    },
+    [metting.form.place, metting.form.title, metting.form.type]
+  );
 
   let history = useHistory();
 
   const handleSubmit = useCallback(
     (event) => {
       event.preventDefault();
-      createEvent(metting);
-      history.push(`/events/`);
+      createMarker(metting.map);
+      createEvent(metting.form);
+      history.push(`/events`);
     },
-    [createEvent, metting, history]
+    [createMarker, metting.map, metting.form, createEvent, history]
   );
 
   return (
@@ -80,44 +113,53 @@ const EventForm = ({ createEvent }) => {
       <TextField
         required
         label="Event title"
-        value={metting.title}
+        value={metting.form.title}
         name="title"
-        onChange={handleChange}
+        onChange={handleChangeForm}
         variant="outlined"
         margin="normal"
       />
       <TextField
         required
         label="Event description"
-        value={metting.description}
+        value={metting.form.description}
         name="description"
-        onChange={handleChange}
+        onChange={handleChangeForm}
         variant="outlined"
         margin="normal"
       />
       <TextField
         required
         label="Event Type"
-        value={metting.type}
+        value={metting.form.type}
         name="type"
-        onChange={handleChange}
+        onChange={handleChangeForm}
         variant="outlined"
         margin="normal"
       />
       <TextField
         required
         label="Place"
-        value={metting.place}
+        value={metting.form.place}
         name="place"
-        onChange={handleChange}
+        onChange={handleChangeForm}
         variant="outlined"
         margin="normal"
       />
       <TextField
         label="Image"
-        value={metting.image}
+        value={metting.form.image}
         name="image"
-        onChange={handleChange}
+        onChange={handleChangeForm}
+        variant="outlined"
+        margin="normal"
+      />
+      <TextField
+        required
+        label="Event place longitude and latitude"
+        value={metting.coordinates}
+        name="coordinates"
+        onChange={handleChangeMap}
         variant="outlined"
         margin="normal"
       />

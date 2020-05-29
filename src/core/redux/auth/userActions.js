@@ -30,7 +30,6 @@ export const logout = createAction(`${scope}/REQUEST_LOGOUT`, async () => {
 
 export const checkAuth = createAsyncThunk(`${scope}/REQUEST_AUTH`, async () => {
   const response = await UserApi.checkUser();
-  console.log(response);
   return {
     isAuth: response != null,
     role: response.data["roles"][0],
