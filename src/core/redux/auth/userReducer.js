@@ -27,7 +27,6 @@ const authReducer = createReducer(initialState, {
   [register.fulfilled]: (state, action) => {
     return {
       ...state,
-      isAuth: true,
     };
   },
 
