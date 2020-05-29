@@ -42,15 +42,11 @@ const useStyles = makeStyles(
   }
 );
 
-const mapStateToProps = (state) => ({
-  isOpen: state.auth.open,
-});
-
 const mapDispatchToProps = {
   createEvent,
 };
 
-const MapForm = ({ createEvent, isOpen }) => {
+const MapForm = ({ createEvent }) => {
   const [marker, setMarker] = useState({
     currentPlace: "",
     value: "",
@@ -89,4 +85,4 @@ const MapForm = ({ createEvent, isOpen }) => {
   return <div></div>;
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MapForm);
+export default connect(null, mapDispatchToProps)(MapForm);

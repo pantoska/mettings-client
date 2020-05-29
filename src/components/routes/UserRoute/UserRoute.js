@@ -8,24 +8,17 @@ const mapStateToProps = (state) => ({
 
 const enhance = connect(mapStateToProps);
 
-const UserRoute = ({
-  component: Component,
-  children,
-  location,
-  isAuth,
-  ...rest
-}) => {
+const UserRoute = ({ component: Component, location, isAuth, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={({ props }) =>
+      render={(props) =>
         isAuth ? (
-          <Component {...rest} {...props} />
+          <Component {...props} />
         ) : (
-          // children
           <Redirect
             to={{
-              pathname: "/",
+              pathname: "/login",
               state: { from: location },
             }}
           />

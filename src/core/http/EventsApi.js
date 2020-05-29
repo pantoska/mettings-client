@@ -12,8 +12,8 @@ export default {
     );
   },
 
-  updateEvent(requestDto) {
-    return request.put("http://localhost:8080/api/events", requestDto);
+  updateEvent(id, requestDto) {
+    return request.put(`http://localhost:8080/api/events/${id}`, requestDto);
   },
 
   getAllEvents() {

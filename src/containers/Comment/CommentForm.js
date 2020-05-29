@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import { useParams } from "react-router-dom";
 
 import {
   TextField,
@@ -56,9 +57,10 @@ const enhance = compose(connect(mapStateToProps, mapDispatchToProps));
 
 const CommentForm = ({ event, createComment, ...props }) => {
   const classes = useStyles();
+  const eventId = useParams();
 
   const [comment, setComment] = useState({
-    id: props.id,
+    id: eventId.id,
     content: "",
   });
 

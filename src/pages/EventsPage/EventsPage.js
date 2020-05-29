@@ -22,7 +22,7 @@ const useStyles = makeStyles(
 );
 
 const mapStateToProps = (state) => ({
-  isAdmin: state.auth.isAdmin,
+  isAdmin: state.user.isAdmin,
 });
 
 const enhance = compose(connect(mapStateToProps, null));

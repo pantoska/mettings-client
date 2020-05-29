@@ -9,10 +9,10 @@ import Typography from "@material-ui/core/Typography";
 
 import { compose } from "recompose";
 import { connect } from "react-redux";
-import { getEventById } from "../../core/redux/events/eventsAction";
+import { getEventById } from "../../../core/redux/events/eventsAction";
 
-import CommentForm from "../Comment/CommentForm";
-import Comment from "../Comment/Comment";
+import CommentForm from "../../Comment/CommentForm";
+import Comment from "../../Comment/Comment";
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -65,10 +65,6 @@ const Event = ({ event, getEventById, ...props }) => {
   useEffect(() => {
     getEventById(props.match.params.id);
   }, [getEventById, props.match.params.id]);
-
-  if (!event) {
-    return null;
-  }
 
   return (
     <div>

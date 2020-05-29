@@ -1,4 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
+import { login, logout, register } from "./userActions";
 import {
   checkAuth,
   checkUserInfo,
@@ -16,6 +17,27 @@ const initialState = {
 };
 
 const authReducer = createReducer(initialState, {
+  [login.fulfilled]: (state, action) => {
+    return {
+      ...state,
+      isAuth: true,
+    };
+  },
+
+  [register.fulfilled]: (state, action) => {
+    return {
+      ...state,
+      isAuth: true,
+    };
+  },
+
+  [logout]: (state, action) => {
+    return {
+      ...state,
+      isAdmin: false,
+      isAuth: false,
+    };
+  },
   [checkAuth.fulfilled]: (state, action) => {
     return {
       ...state,
@@ -49,6 +71,7 @@ const authReducer = createReducer(initialState, {
   [checkUserInfo.fulfilled]: (state, action) => {
     return {
       ...state,
+      id: action.payload.id,
       name: action.payload.name,
       surname: action.payload.surname,
     };

@@ -1,16 +1,14 @@
-import React, { useState, useCallback } from "react";
-
+import React, { useState, useCallback, useEffect } from "react";
 import {
   TextField,
   makeStyles,
   Button,
   Paper,
   Typography,
-  Grid,
-  Link,
 } from "@material-ui/core";
 import { connect } from "react-redux";
-import { register } from "../../../core/redux/auth/userActions";
+import { updateEvent } from "../../../core/redux/events/eventsAction";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -20,7 +18,7 @@ const useStyles = makeStyles(
       padding: theme.spacing(3, 3),
       display: "flex",
       flexDirection: "column",
-      backgroundColor: "rgba(255,255,255,0.6)",
+      backgroundColor: "rgba(255,255,255,0.3)",
     },
     submitButton: {
       marginTop: theme.spacing(2),
@@ -38,27 +36,47 @@ const useStyles = makeStyles(
     },
   }),
   {
-    name: "RegisterForm",
+    name: "UpdateForm",
   }
 );
 
 const mapDispatchToProps = {
-  register,
+  updateEvent,
 };
 
-const RegisterForm = ({ register }) => {
-  const [credentials, setCredentials] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+const UpdateEventForm = ({ metting, updateEvent }) => {
   const classes = useStyles();
+  let history = useHistory();
+
+  const [updateMetting, setUpdateMetting] = useState({
+    description: "",
+    place: "",
+    title: "",
+    type: "",
+    image: "",
+  });
+
+  useEffect(() => {
+    setUpdateMetting(() => ({
+      id: metting.id,
+      description: metting.description,
+      place: metting.place,
+      title: metting.title,
+      type: metting.type,
+      image: metting.image,
+    }));
+  }, [
+    metting.id,
+    metting.description,
+    metting.image,
+    metting.place,
+    metting.title,
+    metting.type,
+  ]);
 
   const handleChange = useCallback((event) => {
     const { name, value } = event.target;
-    setCredentials((prev) => ({
+    setUpdateMetting((prev) => ({
       ...prev,
       [name]: value,
     }));
@@ -67,57 +85,55 @@ const RegisterForm = ({ register }) => {
   const handleSubmit = useCallback(
     (event) => {
       event.preventDefault();
-      register(credentials);
+      updateEvent(updateMetting);
+      history.push(`/events/`);
     },
-    [credentials, register]
+    [history, updateEvent, updateMetting]
   );
 
   return (
     <Paper component="form" className={classes.root} onSubmit={handleSubmit}>
-      <Typography>Register Panel</Typography>
+      <Typography>Update Event form</Typography>
       <TextField
         required
-        label="Name"
-        value={credentials.name}
-        name="firstName"
+        label="Event title"
+        value={updateMetting.title}
+        name="title"
         onChange={handleChange}
         variant="outlined"
         margin="normal"
       />
       <TextField
         required
-        label="Surname"
-        value={credentials.surname}
-        name="lastName"
+        label="Event description"
+        value={updateMetting.description}
+        name="description"
         onChange={handleChange}
         variant="outlined"
         margin="normal"
       />
       <TextField
         required
-        label="Email"
-        value={credentials.email}
-        name="email"
+        label="Event Type"
+        value={updateMetting.type}
+        name="type"
         onChange={handleChange}
         variant="outlined"
         margin="normal"
       />
       <TextField
         required
-        label="Password"
-        type="password"
-        value={credentials.password}
-        name="password"
+        label="Place"
+        value={updateMetting.place}
+        name="place"
         onChange={handleChange}
         variant="outlined"
         margin="normal"
       />
       <TextField
-        required
-        label="Confirm password"
-        type="password"
-        value={credentials.confirmPassword}
-        name="confirmPassword"
+        label="Image"
+        value={updateMetting.image}
+        name="image"
         onChange={handleChange}
         variant="outlined"
         margin="normal"
@@ -127,17 +143,10 @@ const RegisterForm = ({ register }) => {
         variant="contained"
         className={classes.submitButton}
       >
-        Submit
+        Update
       </Button>
-      <Grid container>
-        <Grid item>
-          <Link href="/" variant="body2" className={classes.register}>
-            {"Have already an account? Login"}
-          </Link>
-        </Grid>
-      </Grid>
     </Paper>
   );
 };
 
-export default connect(null, mapDispatchToProps)(RegisterForm);
+export default connect(null, mapDispatchToProps)(UpdateEventForm);

@@ -48,18 +48,16 @@ const mapDispatchToProps = {
 
 const enhance = compose(connect(mapStateToProps, mapDispatchToProps));
 
-const Comment = ({ getUserById, ...props }) => {
+const Comment = ({ getUserById, userId, name, surname, ...props }) => {
   const classes = useStyles();
 
   useEffect(() => {
-    getUserById(props.userId);
-  }, [getUserById, props.userId]);
+    getUserById(userId);
+  }, [getUserById, userId]);
 
   return (
     <Card className={classes.root}>
-      <Typography>
-        {props.name} {props.surname}
-      </Typography>
+      <Typography>{userId}</Typography>
       <Typography>
         {props.date.dayOfMonth} {props.date.month} {props.date.year}{" "}
         {props.date.hour}:{props.date.minute}

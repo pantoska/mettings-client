@@ -33,7 +33,6 @@ const useStyles = makeStyles(
 );
 
 const mapStateToProps = (state) => ({
-  isOpen: state.auth.open,
   events: state.events.allEvents,
 });
 

@@ -4,24 +4,17 @@ import { connect } from "react-redux";
 
 const mapStateToProps = (state) => ({
   isAuth: state.user.isAuth,
-  isOpen: state.auth.open,
 });
 
 const enhance = connect(mapStateToProps);
 
-const GuestRoute = ({
-  component: Component,
-  children,
-  isAuth,
-  isOpen,
-  ...rest
-}) => {
+const GuestRoute = ({ component: Component, location, isAuth, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={({ location }) =>
+      render={(props) =>
         !isAuth ? (
-          children
+          <Component {...props} />
         ) : (
           <Redirect
             to={{

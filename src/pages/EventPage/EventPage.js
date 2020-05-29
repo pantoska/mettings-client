@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
 import PageLayout from "../../layout/PageLayout";
-import Event from "../../containers/Event/Event";
+import Event from "../../containers/EventsDashboard/Event/Event";
 
 import { compose } from "recompose";
 import { connect } from "react-redux";
@@ -21,7 +21,7 @@ const useStyles = makeStyles(
 );
 
 const mapStateToProps = (state) => ({
-  isAdmin: state.auth.isAdmin,
+  isAdmin: state.user.isAdmin,
 });
 
 const enhance = compose(connect(mapStateToProps, null));

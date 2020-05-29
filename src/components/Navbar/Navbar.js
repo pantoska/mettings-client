@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 
-import { logout } from "../../core/redux/auth/authActions";
+import { logout } from "../../core/redux/auth/userActions";
 import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 const mapStateToProps = (state) => ({
   isAuth: state.user.isAuth,
-  isOpen: state.auth.open,
+  isAdmin: state.user.isAdmin,
 });
 
 const mapDispatchToProps = {
@@ -38,8 +38,12 @@ const mapDispatchToProps = {
 
 const enhance = compose(connect(mapStateToProps, mapDispatchToProps));
 
-const Navbar = ({ logout, isAuth }) => {
+const Navbar = ({ logout, isAuth, isAdmin }) => {
   const classes = useStyles();
+
+  const routeChange = () => {
+    logout();
+  };
 
   return (
     <div className={classes.root}>
@@ -52,21 +56,18 @@ const Navbar = ({ logout, isAuth }) => {
           </Typography>
           {isAuth && (
             <div>
-              <NavLink to="/admin" exact={true} className={classes.header}>
-                Admin panel
-              </NavLink>
+              {isAdmin && (
+                <NavLink to="/admin" exact={true} className={classes.header}>
+                  Admin panel
+                </NavLink>
+              )}
               <NavLink to="/events/map" exact={true} className={classes.header}>
                 Show map
               </NavLink>
               <NavLink to="/events/add" exact={true} className={classes.header}>
                 Add event
               </NavLink>
-              <Button
-                color="inherit"
-                onClick={() => {
-                  logout();
-                }}
-              >
+              <Button color="inherit" onClick={routeChange}>
                 Logout
               </Button>
             </div>

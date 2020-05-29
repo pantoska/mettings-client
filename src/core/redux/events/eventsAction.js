@@ -57,7 +57,7 @@ export const createComment = createAsyncThunk(
 export const updateEvent = createAsyncThunk(
   `${scope}/REQUEST_UPDATE_EVENT`,
   async (requestDto) => {
-    const response = await EventsApi.updateEvent(requestDto);
+    const response = await EventsApi.updateEvent(requestDto.id, requestDto);
     return {
       event: response.data,
     };

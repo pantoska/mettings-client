@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import { useHistory } from "react-router-dom";
 
 import {
   TextField,
@@ -40,15 +41,11 @@ const useStyles = makeStyles(
   }
 );
 
-const mapStateToProps = (state) => ({
-  isOpen: state.auth.open,
-});
-
 const mapDispatchToProps = {
   createEvent,
 };
 
-const EventForm = ({ createEvent, isOpen }) => {
+const EventForm = ({ createEvent }) => {
   const [metting, setMetting] = useState({
     description: "",
     place: "",
@@ -66,12 +63,15 @@ const EventForm = ({ createEvent, isOpen }) => {
     }));
   }, []);
 
+  let history = useHistory();
+
   const handleSubmit = useCallback(
     (event) => {
       event.preventDefault();
       createEvent(metting);
+      history.push(`/events/`);
     },
-    [metting, createEvent]
+    [createEvent, metting, history]
   );
 
   return (
@@ -132,4 +132,4 @@ const EventForm = ({ createEvent, isOpen }) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventForm);
+export default connect(null, mapDispatchToProps)(EventForm);

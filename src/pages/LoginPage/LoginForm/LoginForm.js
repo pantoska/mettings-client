@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 
 import {
   TextField,
@@ -10,7 +10,8 @@ import {
   Link,
 } from "@material-ui/core";
 import { connect } from "react-redux";
-import { login } from "../../../core/redux/auth/authActions";
+import { login } from "../../../core/redux/auth/userActions";
+import { checkAuth } from "../../../core/redux/auth/userActions";
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -42,21 +43,18 @@ const useStyles = makeStyles(
   }
 );
 
-const mapStateToProps = (state) => ({
-  isOpen: state.auth.open,
-});
-
 const mapDispatchToProps = {
   login,
+  checkAuth,
 };
 
-const LoginForm = ({ login }) => {
+const LoginForm = ({ login, checkAuth }) => {
+  const classes = useStyles();
+
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
-
-  const classes = useStyles();
 
   const handleChange = useCallback((event) => {
     const { name, value } = event.target;
@@ -70,8 +68,9 @@ const LoginForm = ({ login }) => {
     (event) => {
       event.preventDefault();
       login(credentials);
+      checkAuth();
     },
-    [credentials, login]
+    [checkAuth, credentials, login]
   );
 
   return (
@@ -114,4 +113,4 @@ const LoginForm = ({ login }) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default connect(null, mapDispatchToProps)(LoginForm);

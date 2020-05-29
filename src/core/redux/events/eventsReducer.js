@@ -12,6 +12,13 @@ import {
 const initialState = {
   allEvents: [],
   event: {
+    id: "",
+    userId: "",
+    title: "",
+    description: "",
+    type: "",
+    place: "",
+    image: "",
     commentList: [],
   },
   createdEvent: null,

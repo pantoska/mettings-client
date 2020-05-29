@@ -11,33 +11,22 @@ import EventFormPage from "./pages/EventFormPage";
 import EventPage from "./pages/EventPage";
 import MapPage from "./pages/MapPage";
 import AdminPage from "./pages/AdminPage";
+import UpdateEventPage from "./pages/EventsPage/UpdateEventPage";
 
 const Routes = () => (
   <Switch>
-    <GuestRoute exact path="/">
-      <LoginPage />
-    </GuestRoute>
-    {/* <UserRoute exact path="/" component={EventsPage} /> */}
     <GuestRoute exact path="/login" component={LoginPage} />
-    <AdminRoute exact path="/admin" component={AdminPage} />
-    {/* <LoginPage />
-    </GuestRoute> */}
     <GuestRoute exact path="/register" component={RegisterPage} />
-    {/* <RegisterPage />
-    </GuestRoute> */}
-    <UserRoute exact path="/events/add" component={EventFormPage} />
-    {/* <EventFormPage />
-    </UserRoute> */}
+
+    <AdminRoute exact path="/admin" component={AdminPage} />
+
+    <UserRoute exact path="/" component={EventsPage} />
     <UserRoute exact path="/events" component={EventsPage} />
-    {/* <EventsPage />
-    </UserRoute> */}
+    <UserRoute exact path="/events/add" component={EventFormPage} />
     <UserRoute exact path="/events/map" component={MapPage} />
     <UserRoute exact path="/events/:id" component={EventPage} />
-    {/* <EventPage />
-    </UserRoute> */}
+    <UserRoute exact path="/events/update/:id" component={UpdateEventPage} />
     <Route component={NotFoundPage} />
-    {/* <NotFoundPage />
-    </Route> */}
   </Switch>
 );
 
