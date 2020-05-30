@@ -9,7 +9,7 @@ import {
   deleteEvent,
 } from "./eventsAction";
 
-const initialState = {
+export const initialState = {
   allEvents: [],
   event: {
     id: "",

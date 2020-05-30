@@ -21,7 +21,6 @@ export const getEventById = createAsyncThunk(
     return {
       event: response.data,
       usersDataComments: results,
-      // userInfo: usersInfo.data,
     };
   }
 );

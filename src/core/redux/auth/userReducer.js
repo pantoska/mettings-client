@@ -8,7 +8,7 @@ import {
   deleteUser,
 } from "./userActions";
 
-const initialState = {
+export const initialState = {
   isAuth: false,
   isAdmin: false,
   users: [],
@@ -40,6 +40,7 @@ const authReducer = createReducer(initialState, {
 
   [register.rejected]: (state, action) => {
     return {
+      ...state,
       error: "Email is already registered or weak password",
     };
   },

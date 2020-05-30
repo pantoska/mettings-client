@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { createMarker, getMarkers } from "./markerAction";
 
-const initialState = {
+export const initialState = {
   marker: "",
   allMarkers: [],
 };
