@@ -1,5 +1,8 @@
 import React, { useState, useCallback } from "react";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import {
   TextField,
   makeStyles,
@@ -70,8 +73,9 @@ const LoginForm = ({ login, error }) => {
     (event) => {
       event.preventDefault();
       login(credentials);
+      toast.error(error);
     },
-    [credentials, login]
+    [credentials, error, login]
   );
 
   return (
@@ -110,6 +114,7 @@ const LoginForm = ({ login, error }) => {
           </Link>
         </Grid>
       </Grid>
+      <ToastContainer autoClose={3000} pauseOnHover type="error" />
     </Paper>
   );
 };

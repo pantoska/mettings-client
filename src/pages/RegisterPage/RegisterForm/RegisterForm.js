@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 import {
   TextField,
@@ -46,7 +47,13 @@ const mapDispatchToProps = {
   register,
 };
 
-const RegisterForm = ({ register }) => {
+const mapStateToProps = (state) => ({
+  error: state.user.error,
+});
+
+const RegisterForm = ({ register, error }) => {
+  const classes = useStyles();
+
   const [credentials, setCredentials] = useState({
     firstName: "",
     lastName: "",
@@ -54,7 +61,6 @@ const RegisterForm = ({ register }) => {
     password: "",
     confirmPassword: "",
   });
-  const classes = useStyles();
 
   const handleChange = useCallback((event) => {
     const { name, value } = event.target;
@@ -68,8 +74,9 @@ const RegisterForm = ({ register }) => {
     (event) => {
       event.preventDefault();
       register(credentials);
+      toast.error(error);
     },
-    [credentials, register]
+    [credentials, error, register]
   );
 
   return (
@@ -136,8 +143,9 @@ const RegisterForm = ({ register }) => {
           </Link>
         </Grid>
       </Grid>
+      <ToastContainer autoClose={3000} pauseOnHover type="error" />
     </Paper>
   );
 };
 
-export default connect(null, mapDispatchToProps)(RegisterForm);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);

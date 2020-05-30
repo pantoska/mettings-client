@@ -38,6 +38,12 @@ const authReducer = createReducer(initialState, {
     };
   },
 
+  [register.rejected]: (state, action) => {
+    return {
+      error: "Email is already registered or weak password",
+    };
+  },
+
   [logout]: (state, action) => {
     return {
       ...state,

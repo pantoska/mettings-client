@@ -24,7 +24,9 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "uppercase",
     margin: "10px",
   },
-  title: {},
+  title: {
+    flexGrow: 1,
+  },
 }));
 
 const mapStateToProps = (state) => ({
