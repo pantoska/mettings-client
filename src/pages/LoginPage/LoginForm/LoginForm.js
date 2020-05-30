@@ -11,7 +11,6 @@ import {
 } from "@material-ui/core";
 import { connect } from "react-redux";
 import { login } from "../../../core/redux/auth/userActions";
-import { checkAuth } from "../../../core/redux/auth/userActions";
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -45,10 +44,13 @@ const useStyles = makeStyles(
 
 const mapDispatchToProps = {
   login,
-  checkAuth,
 };
 
-const LoginForm = ({ login, checkAuth }) => {
+const mapStateToProps = (state) => ({
+  error: state.user.error,
+});
+
+const LoginForm = ({ login, error }) => {
   const classes = useStyles();
 
   const [credentials, setCredentials] = useState({
@@ -68,9 +70,8 @@ const LoginForm = ({ login, checkAuth }) => {
     (event) => {
       event.preventDefault();
       login(credentials);
-      checkAuth();
     },
-    [checkAuth, credentials, login]
+    [credentials, login]
   );
 
   return (
@@ -113,4 +114,4 @@ const LoginForm = ({ login, checkAuth }) => {
   );
 };
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

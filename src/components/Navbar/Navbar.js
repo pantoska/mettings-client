@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 
-import { logout } from "../../core/redux/auth/userActions";
+import { logout, checkAuth } from "../../core/redux/auth/userActions";
 import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -34,12 +34,17 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   logout,
+  checkAuth,
 };
 
 const enhance = compose(connect(mapStateToProps, mapDispatchToProps));
 
-const Navbar = ({ logout, isAuth, isAdmin }) => {
+const Navbar = ({ logout, isAuth, isAdmin, checkAuth }) => {
   const classes = useStyles();
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
 
   const routeChange = () => {
     logout();

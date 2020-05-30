@@ -14,6 +14,7 @@ const initialState = {
   users: [],
   name: "",
   surname: "",
+  error: null,
 };
 
 const authReducer = createReducer(initialState, {
@@ -21,6 +22,13 @@ const authReducer = createReducer(initialState, {
     return {
       ...state,
       isAuth: true,
+    };
+  },
+
+  [login.rejected]: (state, action) => {
+    return {
+      ...state,
+      error: "Wrong email or password",
     };
   },
 

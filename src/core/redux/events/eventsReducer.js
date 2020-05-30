@@ -21,8 +21,7 @@ const initialState = {
     image: "",
     commentList: [],
   },
-  createdEvent: null,
-  comments: [],
+  usersDataComments: [],
 };
 
 const eventsReducer = createReducer(initialState, {
@@ -30,6 +29,7 @@ const eventsReducer = createReducer(initialState, {
     return {
       ...state,
       event: action.payload.event,
+      usersDataComments: action.payload.usersDataComments,
       allEvents: [...state.allEvents],
     };
   },
@@ -63,15 +63,16 @@ const eventsReducer = createReducer(initialState, {
       allEvents: state.allEvents.filter(
         (event) => event.id !== action.payload.eventId
       ),
-      // allEvents: [...state.allEvents, action.payload.event],
     };
   },
 
   [createComment.fulfilled]: (state, action) => {
     return {
       ...state,
-      comments: [...state.comments, action.payload.comments],
-      allEvents: [...state.allEvents, action.payload.event],
+      event: {
+        ...state.event,
+        commentList: [...state.event.commentList, action.payload.comments],
+      },
     };
   },
 });

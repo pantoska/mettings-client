@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core";
-import { withRouter } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -38,16 +38,14 @@ const useStyles = makeStyles(
 
 const mapStateToProps = (state) => ({
   event: state.events.event,
+  userDataComments: state.events.usersDataComments,
 });
 
 const mapDispatchToProps = {
   getEventById,
 };
 
-const enhance = compose(
-  withRouter,
-  connect(mapStateToProps, mapDispatchToProps)
-);
+const enhance = compose(connect(mapStateToProps, mapDispatchToProps));
 
 const setImage = (image) => {
   const pattern = /^((http|https|ftp):\/\/)/;
@@ -59,12 +57,18 @@ const setImage = (image) => {
   }
 };
 
-const Event = ({ event, getEventById, ...props }) => {
+const Event = ({ event, userDataComments, getEventById, ...props }) => {
   const classes = useStyles();
+  const eventId = useParams();
+  const users = [];
 
   useEffect(() => {
-    getEventById(props.match.params.id);
-  }, [getEventById, props.match.params.id]);
+    getEventById(eventId.id);
+  }, [eventId.id, getEventById, userDataComments]);
+
+  userDataComments.forEach((el) =>
+    users.push(el.data.firstName + " " + el.data.lastName)
+  );
 
   return (
     <div>
@@ -92,11 +96,11 @@ const Event = ({ event, getEventById, ...props }) => {
           </Typography>
         </CardContent>
       </Card>
-      <CommentForm id={props.match.params.id} />
-      {event.commentList.map((el) => (
+      <CommentForm id={eventId.id} />
+      {event.commentList.map((el, index) => (
         <Comment
           key={el.id.timestamp}
-          userId={el.userId}
+          user={users[index]}
           content={el.content}
           date={el.date}
         />

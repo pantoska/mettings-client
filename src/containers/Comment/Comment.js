@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { makeStyles, Card, Typography } from "@material-ui/core";
 import { getUserById } from "../../core/redux/auth/userActions";
@@ -48,16 +48,11 @@ const mapDispatchToProps = {
 
 const enhance = compose(connect(mapStateToProps, mapDispatchToProps));
 
-const Comment = ({ getUserById, userId, name, surname, ...props }) => {
+const Comment = ({ getUserById, userId, ...props }) => {
   const classes = useStyles();
-
-  useEffect(() => {
-    getUserById(userId);
-  }, [getUserById, userId]);
-
   return (
     <Card className={classes.root}>
-      <Typography>{userId}</Typography>
+      <Typography>{props.user}</Typography>
       <Typography>
         {props.date.dayOfMonth} {props.date.month} {props.date.year}{" "}
         {props.date.hour}:{props.date.minute}

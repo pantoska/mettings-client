@@ -1,14 +1,27 @@
 import { createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import EventsApi from "../../http/EventsApi";
+import UserApi from "../../http/UserApi";
 
 const scope = "core/events";
+
+const userResponse = async (id) => {
+  const response = await UserApi.getUserById(id);
+  return response;
+};
 
 export const getEventById = createAsyncThunk(
   `${scope}/REQUEST_GET_EVENT`,
   async (id) => {
     const response = await EventsApi.getEvent(id);
+    const unresolvedPromises = response.data.commentList.map((el) =>
+      userResponse(el.userId)
+    );
+    const results = await Promise.all(unresolvedPromises);
+
     return {
       event: response.data,
+      usersDataComments: results,
+      // userInfo: usersInfo.data,
     };
   }
 );

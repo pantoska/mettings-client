@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from "react";
-import { useParams } from "react-router-dom";
 
 import {
   TextField,
@@ -55,12 +54,11 @@ const mapDispatchToProps = {
 
 const enhance = compose(connect(mapStateToProps, mapDispatchToProps));
 
-const CommentForm = ({ event, createComment, ...props }) => {
+const CommentForm = ({ event, createComment, id, ...props }) => {
   const classes = useStyles();
-  const eventId = useParams();
 
   const [comment, setComment] = useState({
-    id: eventId.id,
+    id: id,
     content: "",
   });
 
@@ -76,9 +74,9 @@ const CommentForm = ({ event, createComment, ...props }) => {
     (event) => {
       event.preventDefault();
       createComment(comment);
-      setComment({ content: "" });
+      setComment({ id: id, content: "" });
     },
-    [comment, createComment]
+    [comment, createComment, id]
   );
 
   return (

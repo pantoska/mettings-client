@@ -51,7 +51,6 @@ const Map = ({ getMarkers, allMarkers }) => {
     getMarkers();
   }, [getMarkers]);
 
-  allMarkers.map((el) => console.log(el));
   return (
     <div className={classes.root}>
       <LeafletMap center={[50.05, 19.95]} zoom={13}>
