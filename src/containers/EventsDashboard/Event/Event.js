@@ -16,8 +16,12 @@ import Comment from "../../Comment/Comment";
 
 const useStyles = makeStyles(
   (theme) => ({
+    container: {
+      width: "60%",
+      padding: "20px",
+    },
     root: {
-      margin: "20px",
+      // margin: "20px",
       display: "flex",
       flexDirection: "row",
       alignItems: "flex-start",
@@ -71,7 +75,7 @@ const Event = ({ event, userDataComments, getEventById, ...props }) => {
   );
 
   return (
-    <div>
+    <div className={classes.container}>
       <Card className={classes.root}>
         <CardMedia
           className={classes.media}

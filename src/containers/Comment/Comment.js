@@ -17,6 +17,9 @@ const useStyles = makeStyles(
       justifyContent: "center",
       backgroundColor: "rgba(255,255,255,0.6)",
     },
+    date: {
+      textTransform: "lowercase",
+    },
     submitButton: {
       marginTop: theme.spacing(2),
       marginBottom: theme.spacing(2),
@@ -52,11 +55,11 @@ const Comment = ({ getUserById, userId, ...props }) => {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
-      <Typography>{props.user}</Typography>
-      <Typography>
+      <Typography className={classes.date}>
         {props.date.dayOfMonth} {props.date.month} {props.date.year}{" "}
         {props.date.hour}:{props.date.minute}
       </Typography>
+      <Typography>{props.user}</Typography>
       <Typography>{props.content}</Typography>
     </Card>
   );

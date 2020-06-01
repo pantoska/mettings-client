@@ -15,8 +15,9 @@ import { createComment } from "../../core/redux/events/eventsAction";
 const useStyles = makeStyles(
   (theme) => ({
     root: {
-      minWidth: "350px",
-      margin: "30px",
+      // minWidth: "350px",
+      marginTop: "30px",
+      marginBottom: "30px",
       padding: theme.spacing(3, 3),
       display: "flex",
       flexDirection: "column",
