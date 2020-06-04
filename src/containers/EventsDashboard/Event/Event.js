@@ -21,13 +21,11 @@ const useStyles = makeStyles(
       padding: "20px",
     },
     root: {
-      // margin: "20px",
       display: "flex",
       flexDirection: "row",
       alignItems: "flex-start",
       alignContent: "flex-start",
       justifyContent: "flex-start",
-      // flexWrap: "wrap",
     },
     media: {
       height: "300px",

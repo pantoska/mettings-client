@@ -18,7 +18,7 @@ const useStyles = makeStyles(
     },
   }),
   {
-    name: "EventsPage",
+    name: "UpdateEventPage",
   }
 );
 

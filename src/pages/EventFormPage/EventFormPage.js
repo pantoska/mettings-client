@@ -12,11 +12,10 @@ const useStyles = makeStyles(
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      // flexDirection: "column",
     },
   }),
   {
-    name: "EventsPage",
+    name: "EventFormPage",
   }
 );
 
