@@ -33,7 +33,7 @@ const AdminEventCard = ({
       <TableCell>{event.description}</TableCell>
       <TableCell>{event.type}</TableCell>
       <TableCell>{event.place}</TableCell>
-      <TableCell>{props.name + " " + props.surname}</TableCell>
+      {/* <TableCell>{props.name + " " + props.surname}</TableCell> */}
       {handleRemoveEvent && (
         <TableCell>
           <IconButton aria-label="delete" onClick={handleRemoveEvent}>

@@ -77,7 +77,7 @@ const AdminPanel = ({
   }, [getAllUsers, getEvents]);
 
   const eventHeaders = useMemo(() => {
-    return ["title", "description", "type", "place", "user", "remove"];
+    return ["title", "description", "type", "place", "remove"];
   }, []);
 
   const userHeaders = useMemo(() => {
@@ -116,13 +116,15 @@ const AdminPanel = ({
             </TableRow>
           </TableHead>
           <TableBody>
-            {users.map((user) => (
-              <AdminUserCard
-                key={user.id}
-                event={user}
-                handleRemoveUser={() => deleteUser(user.id)}
-              />
-            ))}
+            {users
+              .filter((user) => user.email !== "jan.kowalski@gmail.com")
+              .map((user) => (
+                <AdminUserCard
+                  key={user.id}
+                  event={user}
+                  handleRemoveUser={() => deleteUser(user.id)}
+                />
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

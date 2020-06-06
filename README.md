@@ -1,4 +1,4 @@
-# Mettings Client
+# Mettings-Client
 
 Aplikacja wspomagająca organizowanie spotkań lub wydarzeń, umożliwiająca użytkownikom przeglądanie i tworzenie wydarzeń z zdefiniowaniem potrzebnych informacji (opis, typ, miejsce wydarzenia, opcjonalne zdjęcie) oraz komentowanie danego wydarzenia.
 
@@ -38,7 +38,7 @@ Przejście do katalogu z projektem
 $ cd mettings-client
 ```
 
-Rejestracja na[HERE DEVELOPER](https://developer.here.com/develop/rest-apis) aby otrzymać API KEY
+Rejestracja na [HERE Developer](https://developer.here.com/develop/rest-apis) aby otrzymać API KEY
 
 Stworzenie zmiennej `.env.REACT_APP_HEREMAPS_API_KEY` oraz `.env.REACT_APP_HEREMAPS_URL` do przechowywania API KEY i URL
 

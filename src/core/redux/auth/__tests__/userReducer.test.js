@@ -27,5 +27,10 @@ it("should handle register.rejected", () => {
 
 it("should handle logout", () => {
   const result = userReducer(initialState, userActions.logout());
-  expect(result).toEqual({ ...initialState, isAdmin: false, isAuth: false });
+  expect(result).toEqual({
+    ...initialState,
+    isAdmin: false,
+    isAuth: false,
+    info: "User successfully logout",
+  });
 });
