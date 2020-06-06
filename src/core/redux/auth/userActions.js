@@ -17,7 +17,6 @@ export const register = createAsyncThunk(
   `${scope}/REQUEST_REGISTER`,
   async (requestDto) => {
     await AuthApi.registerUser(requestDto);
-    return {};
   }
 );
 

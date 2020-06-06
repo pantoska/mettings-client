@@ -15,6 +15,7 @@ export const initialState = {
   name: "",
   surname: "",
   error: null,
+  info: null,
 };
 
 const authReducer = createReducer(initialState, {
@@ -35,6 +36,7 @@ const authReducer = createReducer(initialState, {
   [register.fulfilled]: (state, action) => {
     return {
       ...state,
+      info: "User successfully registered",
     };
   },
 
@@ -50,6 +52,7 @@ const authReducer = createReducer(initialState, {
       ...state,
       isAdmin: false,
       isAuth: false,
+      info: "User successfully logout",
     };
   },
   [checkAuth.fulfilled]: (state, action) => {

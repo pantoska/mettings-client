@@ -27,8 +27,9 @@ Aplikacja umożliwia tworzenie konta, dzięki któremu użytkownik ma możliwoś
 
 ## Uruchomienie aplikacji
 
-- Api Key z HERE MAPS dodane do pliku .env
-- Musi być uruchomiony serwer (mettings-server) oraz baza danych MongoDB
+Aplikacja była uruchamiana i testowana za pomocą środowiska Visual Studio Code
+
+- musi być uruchomiony serwer (mettings-server) oraz baza danych MongoDB
 - instalacja Node.js
 
 Przejście do katalogu z projektem
@@ -37,7 +38,11 @@ Przejście do katalogu z projektem
 $ cd mettings-client
 ```
 
-Instalacja paczek dla środowiska Node
+Rejestracja na[HERE DEVELOPER](https://developer.here.com/develop/rest-apis) aby otrzymać API KEY
+
+Stworzenie zmiennej `.env.REACT_APP_HEREMAPS_API_KEY` oraz `.env.REACT_APP_HEREMAPS_URL` do przechowywania API KEY i URL
+
+Instalacja pakietów
 
 ```bash
 $ npm install

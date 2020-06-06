@@ -30,6 +30,9 @@ const useStyles = makeStyles(
       alignContent: "flex-start",
       justifyContent: "flex-start",
     },
+    table: {
+      maxWidth: "80%",
+    },
     media: {
       height: "300px",
       width: "350px",

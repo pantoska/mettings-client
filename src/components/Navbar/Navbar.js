@@ -58,7 +58,7 @@ const Navbar = ({ logout, isAuth, isAdmin, checkAuth }) => {
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             <NavLink to="/" className={classes.header}>
-              Events
+              Mettings
             </NavLink>
           </Typography>
           {isAuth && (

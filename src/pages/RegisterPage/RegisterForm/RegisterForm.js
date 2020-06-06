@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 import {
   TextField,
@@ -49,9 +49,10 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => ({
   error: state.user.error,
+  info: state.user.info,
 });
 
-const RegisterForm = ({ register, error }) => {
+const RegisterForm = ({ register, info, error }) => {
   const classes = useStyles();
 
   const [credentials, setCredentials] = useState({
@@ -73,10 +74,15 @@ const RegisterForm = ({ register, error }) => {
   const handleSubmit = useCallback(
     (event) => {
       event.preventDefault();
-      register(credentials);
-      toast.error(error);
+      register(credentials).then((result) => {
+        if (result.error) {
+          toast.error("Register failed");
+        } else {
+          toast.info("Register success");
+        }
+      });
     },
-    [credentials, error, register]
+    [credentials, register]
   );
 
   return (
@@ -143,7 +149,6 @@ const RegisterForm = ({ register, error }) => {
           </Link>
         </Grid>
       </Grid>
-      <ToastContainer autoClose={3000} pauseOnHover type="error" />
     </Paper>
   );
 };
